@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface BookingUpdatedEvent {
   date: string;
@@ -34,7 +35,7 @@ export class RealtimeService {
   }
 
   private startConnection(): void {
-    const hubUrl = 'http://localhost:5194/hubs/pitch';
+    const hubUrl = environment.hubUrl;
 
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(hubUrl, {
